@@ -10,6 +10,7 @@ import UIKit
 class TMDBDataLoadingVC: UIViewController {
 
     var containerView: UIView!
+    var emptyStateView = TMDBEmptyStateView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +20,7 @@ class TMDBDataLoadingVC: UIViewController {
     
     func showLoadingView() {
         containerView = UIView(frame: view.bounds)
-        view.addSubview(containerView)
+        view.addSubview(containerView)        
         
         containerView.backgroundColor   = .systemBackground
         containerView.alpha             = 0
@@ -49,16 +50,16 @@ class TMDBDataLoadingVC: UIViewController {
     
     
     func showEmptyStateView(with message: String, in view: UIView) {
-        let emptyStateView = TMDBEmptyStateView(message: message)
+        emptyStateView = TMDBEmptyStateView(message: message)
+
         emptyStateView.frame = view.bounds
-        emptyStateView.tag = 10
         view.addSubview(emptyStateView)
     }
     
     
     func dismissEmptyStateView() {
         DispatchQueue.main.async {
-            self.view.viewWithTag(10)?.removeFromSuperview()
+            self.emptyStateView.removeFromSuperview()
         }
     }
 }

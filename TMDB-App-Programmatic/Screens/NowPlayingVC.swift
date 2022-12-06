@@ -20,9 +20,8 @@ class NowPlayingVC: TMDBDataLoadingVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        getMovies(page: page)
         configureTableView()
+        getMovies(page: page)
     }
     
     
