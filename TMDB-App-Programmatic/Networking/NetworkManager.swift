@@ -46,7 +46,7 @@ class NetworkManager {
                 completed(.failure(.invalidData))
                 return
             }
-            // TMDB-App-Programmatic
+
             do {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -115,8 +115,5 @@ class NetworkManager {
         
         task.resume()
         
-//        image = poster ?? placeholderImage
     }
-
-    
 }

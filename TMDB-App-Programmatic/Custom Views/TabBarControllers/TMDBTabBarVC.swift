@@ -12,8 +12,8 @@ class TMDBTabBarVC: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        viewControllers = [createNowPlayingNC(), createTopRatedNC(), createSearchNC()]
         UITabBar.appearance().tintColor = .systemMint
+        viewControllers = [createNowPlayingNC(), createTopRatedNC(), createSearchNC()]
         
     }
     

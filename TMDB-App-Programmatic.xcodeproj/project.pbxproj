@@ -25,13 +25,13 @@
 		B54D7DCE293DB6990095C565 /* TMDBDataLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D7DCD293DB6990095C565 /* TMDBDataLoadingVC.swift */; };
 		B54D7DD1293DB6BD0095C565 /* TMDBAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D7DD0293DB6BD0095C565 /* TMDBAlertVC.swift */; };
 		B54D7DD3293DB6E50095C565 /* TMDBTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D7DD2293DB6E50095C565 /* TMDBTabBarVC.swift */; };
-		B54D7DD5293DB7130095C565 /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D7DD4293DB7130095C565 /* UITableView+Ext.swift */; };
 		B54D7DD7293DB7330095C565 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D7DD6293DB7330095C565 /* UIView+Ext.swift */; };
 		B54D7DD9293DB7450095C565 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D7DD8293DB7450095C565 /* UIViewController+Ext.swift */; };
 		B54D7DDB293DB7620095C565 /* MoviesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D7DDA293DB7620095C565 /* MoviesModel.swift */; };
 		B54D7DDD293DB77E0095C565 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D7DDC293DB77E0095C565 /* NetworkManager.swift */; };
 		B54D7DDF293DB79B0095C565 /* TMDBError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D7DDE293DB79B0095C565 /* TMDBError.swift */; };
 		B54D7DE1293DB7B60095C565 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D7DE0293DB7B60095C565 /* Constants.swift */; };
+		B54D7DE3293EFF060095C565 /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D7DE2293EFF060095C565 /* UITableView+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,13 +55,13 @@
 		B54D7DCD293DB6990095C565 /* TMDBDataLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBDataLoadingVC.swift; sourceTree = "<group>"; };
 		B54D7DD0293DB6BD0095C565 /* TMDBAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAlertVC.swift; sourceTree = "<group>"; };
 		B54D7DD2293DB6E50095C565 /* TMDBTabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBTabBarVC.swift; sourceTree = "<group>"; };
-		B54D7DD4293DB7130095C565 /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
 		B54D7DD6293DB7330095C565 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		B54D7DD8293DB7450095C565 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		B54D7DDA293DB7620095C565 /* MoviesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesModel.swift; sourceTree = "<group>"; };
 		B54D7DDC293DB77E0095C565 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		B54D7DDE293DB79B0095C565 /* TMDBError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBError.swift; sourceTree = "<group>"; };
 		B54D7DE0293DB7B60095C565 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B54D7DE2293EFF060095C565 /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,9 +204,9 @@
 		B54D7DBB293DB52D0095C565 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				B54D7DD4293DB7130095C565 /* UITableView+Ext.swift */,
 				B54D7DD6293DB7330095C565 /* UIView+Ext.swift */,
 				B54D7DD8293DB7450095C565 /* UIViewController+Ext.swift */,
+				B54D7DE2293EFF060095C565 /* UITableView+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -306,13 +306,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B54D7DE3293EFF060095C565 /* UITableView+Ext.swift in Sources */,
 				B54D7DC4293DB5D30095C565 /* TMDBButton.swift in Sources */,
 				B54D7DC0293DB5840095C565 /* TMDBTitleLabel.swift in Sources */,
 				B54D7DD9293DB7450095C565 /* UIViewController+Ext.swift in Sources */,
 				B54D7DC8293DB6290095C565 /* MovieCell.swift in Sources */,
 				B54D7DDF293DB79B0095C565 /* TMDBError.swift in Sources */,
 				B54D7DDD293DB77E0095C565 /* NetworkManager.swift in Sources */,
-				B54D7DD5293DB7130095C565 /* UITableView+Ext.swift in Sources */,
 				B54D7DB0293DB4930095C565 /* SearchVC.swift in Sources */,
 				B54D7DD1293DB6BD0095C565 /* TMDBAlertVC.swift in Sources */,
 				B54D7DD7293DB7330095C565 /* UIView+Ext.swift in Sources */,
