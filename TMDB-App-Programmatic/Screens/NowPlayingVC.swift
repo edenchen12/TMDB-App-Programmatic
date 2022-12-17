@@ -10,39 +10,37 @@ import UIKit
 class NowPlayingVC: TMDBDataLoadingVC {
 
     let tableView = UITableView()
-    
-    let path = "https://api.themoviedb.org/3/movie/now_playing?&language=en-US"
-    var movies: [MovieModel] = []
-    var page = 1
-    
+        
     var hasMorePages = true
-    var isLoading = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        getMovies(page: page)
+        getMoviesGeneric(endpoint: .getNowPlayingMovies(page: page), tableView: tableView)
     }
     
+    //MARK: - NetworkManager caller (old way here for reference)
+//
+//    func getMovies(page: Int) {
+//        isLoading = true
+//        showLoadingView()
+//        NetworkManager.shared.getMovies(with: path, page: page) { result in
+//            switch result {
+//                case .success(let movies):
+//                    self.movies.append(contentsOf: movies)
+//                    DispatchQueue.main.async {
+//                        self.tableView.reloadData()
+//                    }
+//                case .failure(let error):
+//                    self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+//                    return
+//            }
+//            self.dismissLoadingView()
+//        }
+//        isLoading = false
+//    }
     
-    func getMovies(page: Int) {
-        isLoading = true
-        showLoadingView()
-        NetworkManager.shared.getMovies(with: path, page: page) { result in
-            switch result {
-                case .success(let movies):
-                    self.movies.append(contentsOf: movies)
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                case .failure(let error):
-                    self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
-                    return
-            }
-            self.dismissLoadingView()
-        }
-        isLoading = false
-    }
+    
 
 
     func configureTableView() {
@@ -89,7 +87,7 @@ extension NowPlayingVC: UITableViewDelegate, UITableViewDataSource {
         if offsetY > contentHeight - height {
             if !isLoading  {
                 page += 1
-                getMovies(page: page)
+                getMoviesGeneric(endpoint: .getNowPlayingMovies(page: page), tableView: tableView)
                 DispatchQueue.main.async { self.tableView.reloadData() }
             } else {
                 presentGFAlertOnMainThread(title: "Loading more movies", message: "Please wait until we finish to load the next movies", buttonTitle: "Ok")

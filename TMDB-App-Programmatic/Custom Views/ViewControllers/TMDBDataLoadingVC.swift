@@ -11,10 +11,38 @@ class TMDBDataLoadingVC: UIViewController {
 
     var containerView: UIView!
     var emptyStateView = TMDBEmptyStateView()
+    
+    var movies = [MovieModel]()
+    var page = 1
+    var isLoading = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+    }
+    
+    
+    func getMoviesGeneric(endpoint: TMDBEndpoint, tableView: UITableView){
+        isLoading = true
+        showLoadingView()
+        NetworkEngine.load(endpoint: endpoint) { (result: Result<MoviesModel, TMDBError>) in
+            switch result {
+                case .success(let response):
+                    if self.page <= response.totalPages {
+                        self.movies.append(contentsOf: response.results)
+                        DispatchQueue.main.async {
+                            tableView.reloadData()
+                        }
+                    } else {
+                        self.presentGFAlertOnMainThread(title: "End Of The List", message: "it's appear you got to the bottom of the list", buttonTitle: "Ok")
+                    }
+                case .failure(let error):
+                    self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+                    return
+            }
+            self.dismissLoadingView()
+        }
+        isLoading = false
     }
     
     
