@@ -73,9 +73,13 @@ class SearchVC: TMDBDataLoadingVC  {
     
     func updateUI() {
         if !isSearching {
+            hasMorePages = true
+            movies.removeAll()
+            page = 1
+            currentQuery = ""
             DispatchQueue.main.async {
-                self.currentQuery = ""
                 self.showEmptyStateView(with: self.emptyViewMessage, in: self.view)
+                self.tableView.reloadData()
                 return
             }
         } else {
@@ -148,24 +152,14 @@ extension SearchVC: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        resetSearchVC()
+        isSearching = false
+        updateUI()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-            resetSearchVC()
-        }
-    }
-    
-    func resetSearchVC() {
-        isSearching = false
-        hasMorePages = true
-        movies.removeAll()
-        currentQuery = ""
-        page = 1
-        DispatchQueue.main.async {
-            self.showEmptyStateView(with: self.emptyViewMessage, in: self.view)
-            self.tableView.reloadData()
+            isSearching = false
+            updateUI()
         }
     }
     
