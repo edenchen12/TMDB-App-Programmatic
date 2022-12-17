@@ -10,9 +10,7 @@ import UIKit
 class NowPlayingVC: TMDBDataLoadingVC {
 
     let tableView = UITableView()
-        
-    var hasMorePages = true
-    
+            
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
