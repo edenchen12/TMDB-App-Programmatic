@@ -11,7 +11,7 @@ class SearchVC: TMDBDataLoadingVC  {
     
     let tableView = UITableView()
     var searchedMovies = [MovieModel]()
-    let emptyViewMessage = "Please search for a movie."
+    let emptyViewMessage = ""
     var currentQuery = ""
     var isSearching = false
     let searchController = UISearchController()
@@ -77,7 +77,7 @@ class SearchVC: TMDBDataLoadingVC  {
             movies.removeAll()
             page = 1
             currentQuery = ""
-            showEmptyStateView(with: self.emptyViewMessage, in: self.view)
+            showEmptyStateView(in: self.view)
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 return

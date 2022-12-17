@@ -25,6 +25,7 @@ class TMDBDataLoadingVC: UIViewController {
     
     func getMoviesGeneric(endpoint: TMDBEndpoint, tableView: UITableView){
         isLoading = true
+        dismissEmptyStateView()
         showLoadingView()
         NetworkEngine.load(endpoint: endpoint) { (result: Result<MoviesModel, TMDBError>) in
             switch result {
@@ -88,8 +89,8 @@ func dismissLoadingView() {
 }
 
 
-func showEmptyStateView(with message: String, in view: UIView) {
-    emptyStateView = TMDBEmptyStateView(message: message)
+func showEmptyStateView(in view: UIView) {
+    emptyStateView = TMDBEmptyStateView(message: "Please search for a movie.")
     
     emptyStateView.frame = view.bounds
     view.addSubview(emptyStateView)
