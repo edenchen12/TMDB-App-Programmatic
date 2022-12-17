@@ -11,11 +11,9 @@ class SearchVC: TMDBDataLoadingVC  {
     
     let tableView = UITableView()
     var searchedMovies = [MovieModel]()
-    var isLoading = false
-    var page = 1
-    let path = "https://api.themoviedb.org/3/search/movie?query="
     let emptyViewMessage = "Please search for a movie."
     var currentQuery = ""
+    var isSearching = false
     let searchController = UISearchController()
 
     
@@ -27,37 +25,37 @@ class SearchVC: TMDBDataLoadingVC  {
         updateUI()
     }
     
-    
-    func getMovies(withQuery query: String) {
-        print(page)
-        showLoadingView()
-        isLoading = true
-        NetworkManager.shared.getMovies(with: path + query, page: page) { [weak self] result in
-            guard let self = self else { return }
-            
-            switch result {
-                case .success(let movies):
-                    if movies.isEmpty {
-                        DispatchQueue.main.async {
-                            self.searchController.searchBar.text = ""
-                            self.presentGFAlert(title: "Something went wrong", message: "There are no movies that matched your query.", buttonTitle: "Ok")
-                        }
-                        break
-                    }
-                    
-                    self.searchedMovies.append(contentsOf: movies)
-                    self.updateUI()
-                    self.page += 1
-                    
-                case .failure(let error):
-                    self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
-                    print(error.localizedDescription)
-            }
-        }
-        dismissLoadingView()
-        isLoading = false
-    }
-    
+//    singleton networkManager here for references
+//    func getMovies(withQuery query: String) {
+//        print(page)
+//        showLoadingView()
+//        isLoading = true
+//        NetworkManager.shared.getMovies(with: path + query, page: page) { [weak self] result in
+//            guard let self = self else { return }
+//
+//            switch result {
+//                case .success(let movies):
+//                    if movies.isEmpty {
+//                        DispatchQueue.main.async {
+//                            self.searchController.searchBar.text = ""
+//                            self.presentGFAlert(title: "Something went wrong", message: "There are no movies that matched your query.", buttonTitle: "Ok")
+//                        }
+//                        break
+//                    }
+//
+//                    self.searchedMovies.append(contentsOf: movies)
+//                    self.updateUI()
+//                    self.page += 1
+//
+//                case .failure(let error):
+//                    self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+//                    print(error.localizedDescription)
+//            }
+//        }
+//        dismissLoadingView()
+//        isLoading = false
+//    }
+//
     
     func configureTableView() {
         tableView.configureTableView(with: view)
@@ -74,7 +72,7 @@ class SearchVC: TMDBDataLoadingVC  {
     
     
     func updateUI() {
-        if searchedMovies.isEmpty {
+        if !isSearching {
             DispatchQueue.main.async {
                 self.currentQuery = ""
                 self.showEmptyStateView(with: self.emptyViewMessage, in: self.view)
@@ -93,20 +91,20 @@ class SearchVC: TMDBDataLoadingVC  {
 extension SearchVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchedMovies.count
+        return movies.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MovieCell.reuseID) as! MovieCell
-        let movie = searchedMovies[indexPath.row]
+        let movie = movies[indexPath.row]
         cell.set(movie: movie)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let movie = searchedMovies[indexPath.row]
+        let movie = movies[indexPath.row]
         let destVC = DetailsVC()
         destVC.posterURL = movie.posterPath
         destVC.movieTitle = movie.title
@@ -120,8 +118,9 @@ extension SearchVC: UITableViewDelegate, UITableViewDataSource {
         let height          = scrollView.frame.size.height
         
         if offsetY > contentHeight - height {
+            page += 1
             if !isLoading  {
-                getMovies(withQuery: currentQuery)
+                getMoviesGeneric(endpoint: .getSearchResult(page: page, query: currentQuery), tableView: tableView)
                 DispatchQueue.main.async { self.tableView.reloadData() }
             } else {
                 presentGFAlertOnMainThread(title: "Loading more movies", message: "Please wait until we finish to load the next movies", buttonTitle: "Ok")
@@ -134,17 +133,22 @@ extension SearchVC: UITableViewDelegate, UITableViewDataSource {
 
 extension SearchVC: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        isSearching = true
         guard let filter = searchBar.text, !filter.isEmpty else { return }
-        searchedMovies.removeAll()
-        let query = filter.replacingOccurrences(of: " " , with: "%20").lowercased()
+        movies.removeAll()
+        let query = filter.lowercased()
         currentQuery = query
-        getMovies(withQuery: currentQuery)
+//        getMovies(withQuery: currentQuery)
+        print(currentQuery)
+        getMoviesGeneric(endpoint: .getSearchResult(page: page, query: currentQuery), tableView: tableView)
+        updateUI()
         resignFirstResponder()
         
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchedMovies.removeAll()
+        isSearching = false
+        movies.removeAll()
         currentQuery = ""
         page = 1
         DispatchQueue.main.async {
@@ -155,9 +159,10 @@ extension SearchVC: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
+            isSearching = false
             currentQuery = ""
             page = 1
-            searchedMovies.removeAll()
+            movies.removeAll()
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }

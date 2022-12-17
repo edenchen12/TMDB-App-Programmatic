@@ -32,6 +32,9 @@
 		B54D7DDF293DB79B0095C565 /* TMDBError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D7DDE293DB79B0095C565 /* TMDBError.swift */; };
 		B54D7DE1293DB7B60095C565 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D7DE0293DB7B60095C565 /* Constants.swift */; };
 		B54D7DE3293EFF060095C565 /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D7DE2293EFF060095C565 /* UITableView+Ext.swift */; };
+		B54D7DE5294CBE3C0095C565 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D7DE4294CBE3C0095C565 /* Endpoint.swift */; };
+		B54D7DE7294CBE6C0095C565 /* TMDBEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D7DE6294CBE6C0095C565 /* TMDBEndpoint.swift */; };
+		B54D7DE9294CBEE80095C565 /* NetworkEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54D7DE8294CBEE80095C565 /* NetworkEngine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +65,9 @@
 		B54D7DDE293DB79B0095C565 /* TMDBError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBError.swift; sourceTree = "<group>"; };
 		B54D7DE0293DB7B60095C565 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B54D7DE2293EFF060095C565 /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
+		B54D7DE4294CBE3C0095C565 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		B54D7DE6294CBE6C0095C565 /* TMDBEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBEndpoint.swift; sourceTree = "<group>"; };
+		B54D7DE8294CBEE80095C565 /* NetworkEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +229,9 @@
 			isa = PBXGroup;
 			children = (
 				B54D7DDC293DB77E0095C565 /* NetworkManager.swift */,
+				B54D7DE4294CBE3C0095C565 /* Endpoint.swift */,
+				B54D7DE6294CBE6C0095C565 /* TMDBEndpoint.swift */,
+				B54D7DE8294CBEE80095C565 /* NetworkEngine.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -316,6 +325,8 @@
 				B54D7DB0293DB4930095C565 /* SearchVC.swift in Sources */,
 				B54D7DD1293DB6BD0095C565 /* TMDBAlertVC.swift in Sources */,
 				B54D7DD7293DB7330095C565 /* UIView+Ext.swift in Sources */,
+				B54D7DE7294CBE6C0095C565 /* TMDBEndpoint.swift in Sources */,
+				B54D7DE5294CBE3C0095C565 /* Endpoint.swift in Sources */,
 				B54D7DC6293DB5FA0095C565 /* TMDBImageView.swift in Sources */,
 				B54D7DCC293DB6710095C565 /* TMDBAlertContainerView.swift in Sources */,
 				B54D7DC2293DB5960095C565 /* TMDBBodyLabel.swift in Sources */,
@@ -324,6 +335,7 @@
 				B54D7DB2293DB4A30095C565 /* DetailsVC.swift in Sources */,
 				B54D7DD3293DB6E50095C565 /* TMDBTabBarVC.swift in Sources */,
 				B54D7DCA293DB6580095C565 /* TMDBEmptyStateView.swift in Sources */,
+				B54D7DE9294CBEE80095C565 /* NetworkEngine.swift in Sources */,
 				B54D7DDB293DB7620095C565 /* MoviesModel.swift in Sources */,
 				B54D7DAE293DB47F0095C565 /* TopRatedVC.swift in Sources */,
 				B54D7D98293DB2C50095C565 /* SceneDelegate.swift in Sources */,
