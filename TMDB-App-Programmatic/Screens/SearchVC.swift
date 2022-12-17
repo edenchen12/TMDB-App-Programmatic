@@ -77,8 +77,8 @@ class SearchVC: TMDBDataLoadingVC  {
             movies.removeAll()
             page = 1
             currentQuery = ""
+            showEmptyStateView(with: self.emptyViewMessage, in: self.view)
             DispatchQueue.main.async {
-                self.showEmptyStateView(with: self.emptyViewMessage, in: self.view)
                 self.tableView.reloadData()
                 return
             }
@@ -145,8 +145,8 @@ extension SearchVC: UISearchBarDelegate {
         //        getMovies(withQuery: currentQuery)
         print(currentQuery)
         print(page)
-        getMoviesGeneric(endpoint: .getSearchResult(page: page, query: currentQuery), tableView: tableView)
         updateUI()
+        getMoviesGeneric(endpoint: .getSearchResult(page: page, query: currentQuery), tableView: tableView)
         resignFirstResponder()
         
     }
